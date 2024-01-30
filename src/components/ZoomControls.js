@@ -24,9 +24,13 @@ export class ZoomControls extends Component {
   handleZoomInClick() {
     const { windowId, updateViewport, viewer } = this.props;
 
-    updateViewport(windowId, {
-      zoom: viewer.zoom * 2,
-    });
+    //   updateViewport(windowId, {
+    //     zoom: viewer.zoom * 2,
+    //   });
+
+    const center = window.OSDViewer.viewport.getCenter();
+    window.OSDViewer.viewport.zoomBy(window.OSDViewer.zoomPerClick/1.0, center, false);
+    window.OSDViewer.viewport.applyConstraints();
   }
 
   /**
@@ -35,9 +39,13 @@ export class ZoomControls extends Component {
   handleZoomOutClick() {
     const { windowId, updateViewport, viewer } = this.props;
 
-    updateViewport(windowId, {
-      zoom: viewer.zoom / 2,
-    });
+    //   updateViewport(windowId, {
+    //     zoom: viewer.zoom / 2,
+    //   });
+    
+    const center = window.OSDViewer.viewport.getCenter();
+    window.OSDViewer.viewport.zoomBy(1/window.OSDViewer.zoomPerClick, center, false);
+    window.OSDViewer.viewport.applyConstraints();
   }
 
   /**
@@ -57,10 +65,10 @@ export class ZoomControls extends Component {
     }
     return (
       <div className={classes.zoom_controls}>
-        <MiradorMenuButton aria-label={t('zoomIn')} onClick={this.handleZoomInClick}>
+        <MiradorMenuButton aria-label={t('zoomIn')} onClick={() => this.handleZoomInClick()}>
           <AddCircleIcon />
         </MiradorMenuButton>
-        <MiradorMenuButton aria-label={t('zoomOut')} onClick={this.handleZoomOutClick}>
+        <MiradorMenuButton aria-label={t('zoomOut')} onClick={() => this.handleZoomOutClick()}>
           <RemoveCircleIcon />
         </MiradorMenuButton>
         <MiradorMenuButton aria-label={t('zoomReset')} onClick={() => zoomToWorld(false)}>

@@ -56,6 +56,8 @@ export class OpenSeadragonViewer extends Component {
 
     this.setState({ viewer });
 
+    window.OSDViewer = viewer;
+
     // Set a flag when OSD starts animating (so that viewer updates are not used)
     viewer.addHandler('animation-start', () => {
       this.osdUpdating = true;
@@ -64,6 +66,9 @@ export class OpenSeadragonViewer extends Component {
     viewer.addHandler('animation-finish', () => {
       this.osdUpdating = false;
     });
+    // viewer.addHandler('zoom', (event) => {
+    //   console.log("-- osd.zoom", event.zoom);
+    // });
 
     if (viewer.innerTracker) {
       viewer.innerTracker.moveHandler = this.onCanvasMouseMove;

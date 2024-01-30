@@ -6,9 +6,26 @@
     <meta name="theme-color" content="#000000">
     <title>Mirador</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+
+    <style>
+      #toolbar-hack {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        z-index: 5000;
+      }
+    </style>
   </head>
   <body>
     <div id="mirador" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></div>
+    <div id="toolbar-hack">
+      <button id="action-zoom-in">Zoom In</button>
+      <button id="action-zoom-out">Zoom Out</button>
+    </div>
     <script>document.write("<script type='text/javascript' src='../../../dist/mirador.min.js?v=" + Date.now() + "'><\/script>");</script>
     <script type="text/javascript">
      var miradorInstance = Mirador.viewer({
@@ -29,11 +46,26 @@
        },
        workspace: {
          type: 'not-mosaic-or-elastic',
+         showZoomControls: true,
        },
        workspaceControlPanel: {
          enabled: false,
        },
      });
+    </script>
+    <script>
+      const btnZoomIn = document.querySelector('#action-zoom-in');
+      const btnZoomOut = document.querySelector('#action-zoom-out');
+      btnZoomIn.addEventListener('click', (event) => {
+        const center = OSDViewer.viewport.getCenter();
+        OSDViewer.viewport.zoomBy(OSDViewer.zoomPerClick/1.0, center, false);
+        OSDViewer.viewport.applyConstraints();
+      })
+      btnZoomOut.addEventListener('click', (event) => {
+        const center = OSDViewer.viewport.getCenter();
+        OSDViewer.viewport.zoomBy(1/OSDViewer.zoomPerClick, center, false);
+        OSDViewer.viewport.applyConstraints();
+      })
     </script>
   </body>
 </html>
