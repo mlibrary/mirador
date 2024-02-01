@@ -87,5 +87,5 @@ SidebarIndexList.propTypes = {
 
 SidebarIndexList.defaultProps = {
   selectedCanvasIds: [],
-  variant: 'item',
+  variant: 'thumbnail', // 'item',
 };
