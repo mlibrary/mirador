@@ -136,6 +136,7 @@ export const getDefaultSidebarVariant = createSelector(
     getSequenceTreeStructure,
   ],
   tree => (
-    tree && tree.nodes && tree.nodes.length > 0 ? 'tableOfContents' : 'thumbnail' // 'item'
+    // tree && tree.nodes && tree.nodes.length > 0 ? 'tableOfContents' : 'thumbnail' // 'item'
+    tree && tree.nodes && tree.nodes.length > 0 ? 'thumbnail' : 'thumbnail' // 'item'
   ),
 );
