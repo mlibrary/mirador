@@ -24,7 +24,8 @@
     "build:watch": "webpack --watch --mode=development",
     "prepublishOnly": "npm run clean && npm run build:es && npm run build:cjs && npm run build",
     "size": "bundlewatch --config bundlewatch.config.json",
-    "start": "NODE_ENV=development webpack serve --open"
+    "start": "NODE_ENV=development webpack serve --open",
+    "prepare": "npm run build:es"
   },
   "license": "Apache-2.0",
   "contributors": [
