@@ -56,7 +56,8 @@ export class OpenSeadragonViewer extends Component {
 
     this.setState({ viewer });
 
-    window.OSDViewer = viewer;
+    window.OSDViewers = window.OSDViewers || {};
+    window.OSDViewers[windowId] = viewer;
 
     // Set a flag when OSD starts animating (so that viewer updates are not used)
     viewer.addHandler('animation-start', () => {

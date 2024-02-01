@@ -28,9 +28,10 @@ export class ZoomControls extends Component {
     //     zoom: viewer.zoom * 2,
     //   });
 
-    const center = window.OSDViewer.viewport.getCenter();
-    window.OSDViewer.viewport.zoomBy(window.OSDViewer.zoomPerClick/1.0, center, false);
-    window.OSDViewer.viewport.applyConstraints();
+    const osdviewer = window.OSDViewers[windowId];
+    const center = osdviewer.viewport.getCenter();
+    osdviewer.viewport.zoomBy(osdviewer.zoomPerClick/1.0, center, false);
+    osdviewer.viewport.applyConstraints();
   }
 
   /**
@@ -43,9 +44,10 @@ export class ZoomControls extends Component {
     //     zoom: viewer.zoom / 2,
     //   });
     
-    const center = window.OSDViewer.viewport.getCenter();
-    window.OSDViewer.viewport.zoomBy(1/window.OSDViewer.zoomPerClick, center, false);
-    window.OSDViewer.viewport.applyConstraints();
+    const osdviewer = window.OSDViewers[windowId];
+    const center = osdviewer.viewport.getCenter();
+    osdviewer.viewport.zoomBy(1/osdviewer.zoomPerClick, center, false);
+    osdviewer.viewport.applyConstraints();
   }
 
   /**
